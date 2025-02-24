@@ -1,0 +1,9 @@
+# Ignore everything by default
+*
+
+# Allow only specific files and directories
+!wordpress/
+!docker-compose.yml
+!.env
+!.gitignore
+!.dockerignore

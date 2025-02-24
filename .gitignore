@@ -1,0 +1,26 @@
+# Ignore the .env file (contains sensitive data)
+.env
+
+# Ignore Docker volumes
+db_data/
+
+# Ignore WordPress core files (if not managing them in Git)
+wordpress/wp-admin/
+wordpress/wp-includes/
+wordpress/wp-content/plugins/
+wordpress/wp-content/themes/
+wordpress/wp-content/uploads/
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore IDE-specific files
+.idea/
+.vscode/
+
+# Ignore log files
+*.log
+
+# Ignore node_modules (if using Node.js for theme/plugin development)
+node_modules/
