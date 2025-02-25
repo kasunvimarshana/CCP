@@ -7,9 +7,13 @@ db_data/
 # Ignore WordPress core files (if not managing them in Git)
 wordpress/wp-admin/
 wordpress/wp-includes/
-wordpress/wp-content/plugins/
+# wordpress/wp-content/plugins/
 wordpress/wp-content/themes/
 wordpress/wp-content/uploads/
+wordpress/wp-content/plugins/akismet/
+wordpress/wp-content/plugins/hello.php
+wordpress/wp-content/plugins/index.php
+!wordpress/wp-content/plugins/ccp-chat-plugin/**
 
 # Ignore OS-specific files
 .DS_Store
