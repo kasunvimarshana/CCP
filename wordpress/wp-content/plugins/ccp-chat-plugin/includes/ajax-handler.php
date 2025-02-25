@@ -31,6 +31,7 @@ function ccp_send_chat_message() {
                 // 'Authorization' => 'Bearer ' . $api_key,
             ],
             'data_format' => 'body',
+            'timeout' => PHP_INT_MAX,
         ];
 
         $response = wp_remote_post( $api_endpoint, $options );

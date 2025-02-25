@@ -1,10 +1,14 @@
 jQuery(document).ready(function($) {
-    const $chatWindow = $("#chat-window");
-    const $chatToggle = $("#chat-toggle");
-    const $chatInput = $("#chat-input");
-    const $chatBody = $(".chat-body");
-    const $sendButton = $("#send-button");
-    const $closeChat = $("#close-chat");
+    // Wrap all selections inside a parent container
+    const $chatContainer = $(".chat-container");
+
+    // Select elements within the container using find()
+    const $chatWindow = $chatContainer.find(".chat-window");
+    const $chatToggle = $chatContainer.find(".chat-toggle");
+    const $chatInput = $chatContainer.find(".chat-input");
+    const $chatBody = $chatContainer.find(".chat-body");
+    const $sendButton = $chatContainer.find(".send-button");
+    const $closeChat = $chatContainer.find(".close-chat");
 
     function toggleChat() {
         $chatWindow.fadeToggle(300).toggleClass("active");
@@ -24,7 +28,9 @@ jQuery(document).ready(function($) {
 
     function sendMessage() {
         const messageText = $chatInput.val().trim();
-        if (!messageText) return;
+        if (!messageText) {
+            return;
+        }
 
         appendMessage(messageText, "outgoing");
         $chatInput.val("");
@@ -48,11 +54,12 @@ jQuery(document).ready(function($) {
         });
     }
 
+    // Attach events to elements using class names and find()
     $chatToggle.click(toggleChat);
     $closeChat.click(closeChat);
     
     $(document).click(function(event) {
-        if (!$(event.target).closest("#chat-window, #chat-toggle").length) {
+        if (!$(event.target).closest(".chat-window, .chat-toggle").length) {
             closeChat();
         }
     });

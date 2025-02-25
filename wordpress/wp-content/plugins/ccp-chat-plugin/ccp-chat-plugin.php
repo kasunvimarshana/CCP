@@ -11,7 +11,7 @@
 * Plugin Name: Custom Chat Plugin
 * Plugin URI: https://github.com/kasunvimarshana/
 * Description: A live chat plugin.
-* Version: 1.0.0
+* Version: 1.0.1
 * Author: Kasun Vimarshana
 * Author URI: https://github.com/kasunvimarshana/
 * License: GPLv2 or later
