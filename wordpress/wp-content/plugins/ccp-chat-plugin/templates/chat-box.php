@@ -1,11 +1,3 @@
-<!-- <div id="ccp-chat-widget" class="ccp-chat-widget">
-    <div id="ccp-chat-header" class="ccp-chat-header">Chat with Us</div>
-    <div id="ccp-chat-messages" class="ccp-chat-messages"></div>
-    <input id="ccp-chat-input" type="text" class="ccp-chat-input" placeholder="Type your message...">
-    <button id="ccp-close-chat" class="ccp-close-chat">Close</button>
-</div> -->
-
-<!-- ================================ -->
 <!-- Floating Chat Button -->
 <button id="chat-toggle" class="chat-button">
     <svg class="chat-icon" viewBox="0 0 24 24">
