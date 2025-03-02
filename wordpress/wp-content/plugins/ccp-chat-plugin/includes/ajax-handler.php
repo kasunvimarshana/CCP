@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // Handle AJAX Request to Send Chat Message
 function ccp_send_chat_message() {
-    $user_id = get_current_user_id() ? get_current_user_id() : session_id();
+    $user_id = get_current_user_id() ?: session_id();
     $api_endpoint = get_option('ccp_api_endpoint');
     $api_key = get_option('ccp_api_key');
 

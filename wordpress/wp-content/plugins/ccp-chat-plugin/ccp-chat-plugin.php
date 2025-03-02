@@ -24,11 +24,17 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
 
+// Define default values
 define( 'CCP_VERSION', '1.0.0' );
 define( 'CCP_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
 define( 'CCP_PLUGIN_DIR_PATH', plugin_dir_path( __FILE__ ) );
 define( 'CCP_PLUGIN_DIR_URL', plugin_dir_url( __FILE__ ) );
 define( 'CCP_NAME', 'Custom Chat Plugin' );
+define( 'CCP_DEFAULT_API_ENDPOINT', 'http://triagezone.com/api/chats/send-message' );
+define( 'CCP_DEFAULT_API_KEY', '' );
+define( 'CCP_PLUGIN_VERSION', '1.0' );
+define( 'CCP_PRIMARY_COLOR', '#007bff' );
+define( 'CCP_BG_COLOR', '#ffffff' );
 
 require_once CCP_PLUGIN_DIR_PATH . 'includes/settings.php';
 require_once CCP_PLUGIN_DIR_PATH . 'includes/ajax-handler.php';
@@ -52,6 +58,7 @@ function ccp_enqueue_assets() {
 
     // Localize script to pass AJAX URL to JavaScript
     wp_localize_script('ccp-chat-script', 'ccp_ajax_obj', array(
+        'nonce' => wp_create_nonce('ccp_chat_nonce'),
         'ajax_url' => admin_url('admin-ajax.php'),
         'api_key' => get_option('ccp_api_key'),
     ));
@@ -60,6 +67,21 @@ add_action('wp_enqueue_scripts', 'ccp_enqueue_assets');
 
 // Display the Chat Widget
 function ccp_chat_widget() {
+    // ob_start();
     include CCP_PLUGIN_DIR_PATH . 'templates/chat-box.php';
+    // $output = ob_get_clean();
+    // return $output;
 }
 add_shortcode('ccp_chat_widget', 'ccp_chat_widget');
+
+// Plugin activation hook
+function ccp_chat_activate() {
+    // Activation logic
+}
+register_activation_hook(__FILE__, 'ccp_chat_activate');
+
+// Plugin deactivation hook
+function ccp_chat_deactivate() {
+    // Deactivation logic
+}
+register_deactivation_hook(__FILE__, 'ccp_chat_deactivate');
