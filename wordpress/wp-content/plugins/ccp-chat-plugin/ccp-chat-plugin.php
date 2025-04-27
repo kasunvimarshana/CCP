@@ -33,8 +33,18 @@ define( 'CCP_NAME', 'Custom Chat Plugin' );
 define( 'CCP_DEFAULT_API_ENDPOINT', 'http://triagezone.com/api/chats/send-message' );
 define( 'CCP_DEFAULT_API_KEY', '' );
 define( 'CCP_PLUGIN_VERSION', '1.0' );
+define( 'CCP_DEFAULT_TITLE', 'CCP' );
+// theme
 define( 'CCP_PRIMARY_COLOR', '#007bff' );
+define( 'CCP_PRIMARY_HOVER_COLOR', '#0056b3' );
 define( 'CCP_BG_COLOR', '#ffffff' );
+define( 'CCP_CHAT_BG_COLOR', '#f9f9f9' );
+define( 'CCP_MESSAGE_INCOMING_BG_COLOR', '#e0e0e0' );
+define( 'CCP_MESSAGE_OUTGOING_BG_COLOR', '#e0e0e0' );
+define( 'CCP_TEXT_COLOR', '#ffffff' );
+define( 'CCP_MESSAGE_INCOMING_TEXT_COLOR', '#000000' );
+define( 'CCP_MESSAGE_OUTGOING_TEXT_COLOR', '#ffffff' );
+define( 'CCP_MESSAGE_LOADING_TEXT_COLOR', '#000000' );
 
 require_once CCP_PLUGIN_DIR_PATH . 'includes/settings.php';
 require_once CCP_PLUGIN_DIR_PATH . 'includes/ajax-handler.php';
