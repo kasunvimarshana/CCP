@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 const CCP_FIELDS = [
     'ccp_title' => ['type' => 'text', 'default' => CCP_DEFAULT_TITLE, 'sanitize' => 'sanitize_text_field'],
     'ccp_api_key' => ['type' => 'text', 'default' => '', 'sanitize' => 'sanitize_text_field'],
-    'ccp_api_endpoint' => ['type' => 'text', 'default' => CCP_DEFAULT_API_ENDPOINT, 'sanitize' => 'esc_url_raw'],
+    'ccp_api_base_url' => ['type' => 'text', 'default' => CCP_DEFAULT_API_BASE_URL, 'sanitize' => 'esc_url_raw'],
     'ccp_enabled_pages' => ['type' => 'array', 'default' => [], 'sanitize' => 'ccp_sanitize_array'],
     'ccp_enable_homepage' => ['type' => 'boolean', 'default' => false, 'sanitize' => 'sanitize_text_field'],
     'ccp_primary_color' => ['type' => 'color', 'default' => CCP_PRIMARY_COLOR, 'sanitize' => 'ccp_sanitize_hex_color'],
@@ -113,7 +113,7 @@ function ccp_render_field_callback($args) {
 function ccp_register_settings() {
     register_setting('ccp_settings', 'ccp_title', ['sanitize_callback' => 'sanitize_text_field']);
     register_setting('ccp_settings', 'ccp_api_key', ['sanitize_callback' => 'sanitize_text_field']);
-    register_setting('ccp_settings', 'ccp_api_endpoint', ['sanitize_callback' => 'esc_url_raw']);
+    register_setting('ccp_settings', 'ccp_api_base_url', ['sanitize_callback' => 'esc_url_raw']);
     register_setting('ccp_settings', 'ccp_enabled_pages', ['sanitize_callback' => 'ccp_sanitize_array']);
     register_setting('ccp_settings', 'ccp_enable_homepage', ['sanitize_callback' => 'sanitize_text_field']);
     register_setting('ccp_settings', 'ccp_primary_color', ['sanitize_callback' => 'ccp_sanitize_hex_color']);
@@ -131,7 +131,7 @@ function ccp_register_settings() {
 
     add_settings_field('ccp_title', 'Title', 'ccp_title_callback', 'ccp-settings', 'ccp_main');
     add_settings_field('ccp_api_key', 'API Key', 'ccp_api_key_callback', 'ccp-settings', 'ccp_main');
-    add_settings_field('ccp_api_endpoint', 'API Endpoint', 'ccp_api_endpoint_callback', 'ccp-settings', 'ccp_main');
+    add_settings_field('ccp_api_base_url', 'API BaseURL', 'ccp_api_base_url_callback', 'ccp-settings', 'ccp_main');
     add_settings_field('ccp_enabled_pages', 'Enable on Pages', 'ccp_enabled_pages_callback', 'ccp-settings', 'ccp_main');
     add_settings_field('ccp_enable_homepage', 'Enable on Homepage', 'ccp_enable_homepage_callback', 'ccp-settings', 'ccp_main');
     add_settings_field('ccp_primary_color', 'Primary Color', 'ccp_primary_color_callback', 'ccp-settings', 'ccp_main');
@@ -169,10 +169,10 @@ function ccp_api_key_callback() {
     echo "<input type='text' name='ccp_api_key' value='" . esc_attr($api_key) . "' />";
 }
 
-// Callback for API endpoint input field
-function ccp_api_endpoint_callback() {
-    $api_endpoint = get_option('ccp_api_endpoint', CCP_DEFAULT_API_ENDPOINT);
-    echo "<input type='text' name='ccp_api_endpoint' value='" . esc_attr($api_endpoint) . "' />";
+// Callback for API baseURL input field
+function ccp_api_base_url_callback() {
+    $api_base_url = get_option('ccp_api_base_url', CCP_DEFAULT_API_BASE_URL);
+    echo "<input type='text' name='ccp_api_base_url' value='" . esc_attr($api_base_url) . "' />";
 }
 
 // Callback for Enabled Pages selection
@@ -255,7 +255,7 @@ function ccp_message_loading_text_color_callback() {
 // Set default values on plugin activation
 function ccp_set_default_options() {
     // add_option('ccp_api_key', CCP_DEFAULT_API_KEY);
-    // add_option('ccp_api_endpoint', CCP_DEFAULT_API_ENDPOINT);
+    // add_option('ccp_api_base_url', CCP_DEFAULT_API_BASE_URL);
     update_option('ccp_enabled_pages', []);
     update_option('ccp_enable_homepage', false);
     update_option('ccp_primary_color', CCP_PRIMARY_COLOR);
@@ -277,8 +277,8 @@ function ccp_set_default_options() {
         update_option('ccp_api_key', CCP_DEFAULT_API_KEY);
     }
 
-    if (get_option('ccp_api_endpoint') === false) {
-        update_option('ccp_api_endpoint', CCP_DEFAULT_API_ENDPOINT);
+    if (get_option('ccp_api_base_url') === false) {
+        update_option('ccp_api_base_url', CCP_DEFAULT_API_BASE_URL);
     }
 }
 register_activation_hook(__FILE__, 'ccp_set_default_options');
@@ -287,7 +287,7 @@ register_activation_hook(__FILE__, 'ccp_set_default_options');
 function ccp_reset_defaults() {
     update_option('ccp_title', CCP_DEFAULT_TITLE);
     update_option('ccp_api_key', CCP_DEFAULT_API_KEY);
-    update_option('ccp_api_endpoint', CCP_DEFAULT_API_ENDPOINT);
+    update_option('ccp_api_base_url', CCP_DEFAULT_API_BASE_URL);
     update_option('ccp_enabled_pages', []);
     update_option('ccp_enable_homepage', false);
     update_option('ccp_primary_color', CCP_PRIMARY_COLOR);

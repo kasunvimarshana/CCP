@@ -30,7 +30,7 @@ define( 'CCP_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
 define( 'CCP_PLUGIN_DIR_PATH', plugin_dir_path( __FILE__ ) );
 define( 'CCP_PLUGIN_DIR_URL', plugin_dir_url( __FILE__ ) );
 define( 'CCP_NAME', 'Custom Chat Plugin' );
-define( 'CCP_DEFAULT_API_ENDPOINT', 'http://triagezone.com/api/chats/send-message' );
+define( 'CCP_DEFAULT_API_BASE_URL', 'http://triagezone.com' );
 define( 'CCP_DEFAULT_API_KEY', '' );
 define( 'CCP_PLUGIN_VERSION', '1.0' );
 define( 'CCP_DEFAULT_TITLE', 'CCP' );
@@ -71,6 +71,7 @@ function ccp_enqueue_assets() {
         'nonce' => wp_create_nonce('ccp_chat_nonce'),
         'ajax_url' => admin_url('admin-ajax.php'),
         'api_key' => get_option('ccp_api_key'),
+        'event_id' => get_option('ccp_default_event_id', 1)
     ));
 }
 add_action('wp_enqueue_scripts', 'ccp_enqueue_assets');
